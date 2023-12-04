@@ -1,12 +1,18 @@
-# Brew-Bootstrap
+# Brewfile Management Scripts
 
-Brew-Bootstrap is a convenient toolset for managing the installation and uninstallation of software on macOS using Homebrew. This repository contains scripts that leverage a `Brewfile` to automate the setup of a development environment.
+This repository contains two Python scripts for managing software installations and uninstalls using Homebrew based on a Brewfile. The scripts provide a user-friendly interface for installing, updating, or uninstalling software packages.
 
 ## Contents
 
 - [`Brewfile`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/Brewfile): A list of software to be installed, including Homebrew taps, development tools, utilities, fonts, and GUI applications, each accompanied by a brief description.
-- [`install-bootstrap.sh`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/install-bootstrap.sh): A script to install software listed in the `Brewfile`. It checks for the presence of Homebrew, installs it if missing, updates Homebrew recipes, and then iterates through the `Brewfile`, prompting the user for confirmation before installing each item.
-- [`un-install-bootstrap.sh`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/un-install-bootstrap.sh): A script to uninstall software listed in the `Brewfile`. It checks for the presence of Homebrew and then iterates through the `Brewfile`, prompting the user for confirmation before uninstalling each item.
+- [`install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/install-bootstrap.py): 
+	-Lists software that needs to be installed or updated.
+	-Allows installing all software at once, individually, or canceling the process.
+	-Provides a summary of installed and updated items.
+- [`un-install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/un-install-bootstrap.sh): 
+	-Lists installed software that can be uninstalled.
+	-Allows uninstalling all software at once, individually, or canceling the process.
+	-Provides a summary of uninstalled items.
 
 ## Usage
 
@@ -14,25 +20,37 @@ Brew-Bootstrap is a convenient toolset for managing the installation and uninsta
 
 1. Clone the repository:
    git clone https://github.com/JT4862/Brew-Bootstrap.git
-   cd Brew-Bootstrap
 
-2. Make the script executable
-	```chmod +x ./install-bootstrap.sh```
+2. Modify the Brewfile.
+	If you wish you can modify the Brewfile with your favorite hombrew packages
 
-3. Run the install script
-	```./install-bootstrap.sh ```
+3. Run the Python script
+	```python3 install-bootstrap.py```
+
+4. Follow the Prompts or update the software
+
 
 ### Uninstallation
 
-1. Make the script executable
-	```chmod +x ./un-install-bootstrap.sh```
+1. Ensure the Brewfile lists the software you want to uninstall.
+	
 
 2. Run the uninstall script
-	```./un-install-bootstrap.sh```
+	```python3 uninstall-bootstrap.py```
 
+3. 	Follow the prompts to uninstall software.
+
+
+## Requirements
+ - Python 3.x
+ - Homebrew
 
 ## Customize the Brefile
 You can customize the Brewfile to suit your specific software needs. Simply edit the file, following the existing format, to add or remove software.
+
+## Note
+ - The scripts assume that the Brewfile is named Brewfile_copy and is located in the same directory as the scripts.
+ - Modify the Brewfile path in the scripts if your Brewfile has a different name or location.
 
 ## Contributing
 Contributions to Brew-Bootstrap are welcome. Please feel free to submit pull requests or open issues to improve the scripts or add functionality.
