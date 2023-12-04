@@ -3,8 +3,19 @@ import subprocess
 
 def is_installed(package, is_cask=False):
     list_command = ['brew', 'list', '--cask'] if is_cask else ['brew', 'list', '--formula']
-    result = subprocess.run(list_command, capture_output=True, text=True)
-    return package in result.stdout
+    try:
+        result = subprocess.run(list_command, capture_output=True, text=True, check=True)
+        return package in result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error while checking if {package} is installed: {e}")
+        return False
+
+def extract_target(line):
+    if 'brew install --cask' in line or 'cask install' in line:
+        return line.split('"')[1], True
+    elif 'brew install' in line:
+        return line.split('"')[1], False
+    return None, False
 
 def main():
     brewfile_path = "Brewfile"  # Path to the Brewfile
@@ -14,36 +25,35 @@ def main():
         print(f"Brewfile not found at {brewfile_path}")
         return
 
-    # First pass: Determine what needs to be uninstalled
     with open(brewfile_path, 'r') as file:
         for line in file:
-            if line.startswith(('brew install', 'cask install')):
-                parts = line.split()
-                command = parts[0]  # brew or cask
-                target = ' '.join(parts[2:]).split('#')[0].strip().strip('"')
-                is_cask = command == 'cask'
+            if line.startswith(('brew install', 'brew install --cask')):
+                target, is_cask = extract_target(line)
+                if target and is_installed(target, is_cask=is_cask):
+                    to_uninstall.append((target, is_cask))
 
-                if is_installed(target, is_cask=is_cask):
-                    to_uninstall.append((command, target, is_cask))
-
-    # Summary and user choice
     print(f"\nItems to uninstall: {len(to_uninstall)}")
-    for _, target, _ in to_uninstall:
+    for target, _ in to_uninstall:
         print(f"  - {target}")
 
-    choice = input("\nDo you want to uninstall 1. all at once, 2. individually, or 3. cancel? (1/2/3): ").strip().lower()
+    choice = input("\nDo you want to uninstall 1.all at once, 2.individually, or 3.cancel? (1/2/3): ").strip().lower()
 
-    # Uninstallation process
     if choice == '1':
-        for command, target, is_cask in to_uninstall:
-            subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target])
-        print(f"All items have been uninstalled.")
+        for target, is_cask in to_uninstall:
+            try:
+                subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target], check=True)
+                print(f"{target} has been uninstalled.")
+            except subprocess.CalledProcessError as e:
+                print(f"Error while uninstalling {target}: {e}")
     elif choice == '2':
-        for command, target, is_cask in to_uninstall:
+        for target, is_cask in to_uninstall:
             user_choice = input(f"Do you want to uninstall {target}? (y/n): ").strip().lower()
             if user_choice == 'y':
-                subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target])
-                print(f"{target} has been uninstalled.")
+                try:
+                    subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target], check=True)
+                    print(f"{target} has been uninstalled.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error while uninstalling {target}: {e}")
             else:
                 print(f"Skipping {target}")
     elif choice == '3':

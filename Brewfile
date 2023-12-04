@@ -71,9 +71,9 @@ brew install "font-office-code-pro" # Customized version of Source Code Pro
 brew install "font-victor-mono" # Open-source monospaced font with optional cursive italics
 
 # Applications - GUI applications and tools
-brew install  "docker" # App to build and share containerized applications and microservices
-brew install  "google-cloud-sdk" # Set of tools to manage resources and applications hosted on Google Cloud
+brew install --cask "docker" # App to build and share containerized applications and microservices
+brew install --cask "google-cloud-sdk" # Set of tools to manage resources and applications hosted on Google Cloud
 brew install --cask "iterm2" # Terminal emulator for macOS
-brew install  "jetbrains-toolbox" # Manage JetBrains tools and projects
-brew install  "mongodb" # NoSQL database program
+brew install --cask "jetbrains-toolbox" # Manage JetBrains tools and projects
+brew install --cask "mongodb" # NoSQL database program
 

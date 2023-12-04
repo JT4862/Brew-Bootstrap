@@ -38,13 +38,10 @@ def main():
     with open(brewfile_path, 'r') as file:
         for line in file:
             if line.startswith(('brew install', 'brew install --cask')):
-                parts = line.split()
-                is_cask = 'cask' in parts or '--cask' in parts
-                target = parts[-1].strip('"').split('#')[0].strip()
-
-                if not is_installed(target, is_cask=is_cask):
+                target, is_cask = extract_target(line)
+                if target and not is_installed(target, is_cask=is_cask):
                     to_install.append((target, is_cask))
-                elif is_outdated(target, is_cask=is_cask):
+                elif target and is_outdated(target, is_cask=is_cask):
                     to_update.append((target, is_cask))
 
     print(f"\nItems to install: {len(to_install)}")
