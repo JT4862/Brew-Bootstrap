@@ -18,4 +18,4 @@ Brew-Bootstrap is a convenient toolset for managing the installation and uninsta
 
 2. Run the install script
 	'''bash
-	./install-bootstrap.sh'''
+	./install-bootstrap.sh
