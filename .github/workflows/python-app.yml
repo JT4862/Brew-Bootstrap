@@ -1,0 +1,29 @@
+name: Python Application Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        brew update
+        brew install python3
+
+    - name: Run script with simulated input
+      run: python3 install-bootstrap.py --option1 ${{ secrets.OPTION1 }}
+      env:
+        OPTION1: '1'
+     
