@@ -17,10 +17,16 @@ Brew-Bootstrap is a convenient toolset for managing the installation and uninsta
    cd Brew-Bootstrap
 
 2. Run the install script
-	```bash 
-	./install-bootstrap.sh 
+	```./install-bootstrap.sh ```
 
 ### Uninstallation
 
 1. Run the uninstall script
-```./un-install-bootstrap.sh```
+	```./un-install-bootstrap.sh```
+
+
+## Customize the Brefile
+You can customize the Brewfile to suit your specific software needs. Simply edit the file, following the existing format, to add or remove software.
+
+## Contributing
+Contributions to Brew-Bootstrap are welcome. Please feel free to submit pull requests or open issues to improve the scripts or add functionality.
