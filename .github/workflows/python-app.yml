@@ -35,7 +35,31 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   
-    - name: Run script with simulated input
-      run: python3 install-bootstrap.py --option1 ${{ secrets.OPTION1 }}
-      env:
-          OPTION1: '1'
+    - name: Install Homebrew packages
+      run: |
+        python - <<EOF
+        import subprocess
+  
+          def run_command(command):
+              try:
+                  subprocess.run(command, check=True)
+                  print(f"Command {' '.join(command)} executed successfully.")
+              except subprocess.CalledProcessError as e:
+                  print(f"Error executing {' '.join(command)}: {e}")
+  
+          # Modified main function to automatically install all
+          def main():
+              brewfile_path = "Brewfile"  # Path to the Brewfile
+  
+              if not os.path.exists(brewfile_path):
+                  print(f"Brewfile not found at {brewfile_path}")
+                  return
+  
+              with open(brewfile_path, 'r') as file:
+                  for line in file:
+                      if line.startswith(('brew install', 'brew install --cask')):
+                          target, is_cask = line.split('"')[1], 'cask' in line
+                          run_command(['brew', 'install', '--cask' if is_cask else '--formula', target])
+  
+          main()
+          EOF
