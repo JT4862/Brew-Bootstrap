@@ -42,6 +42,7 @@ brew "pkg-config" # Manage compile and link flags for libraries
 brew "postgresql" # Object-relational database system
 brew "prettier" # Opinionated code formatter
 brew "pypy" # Highly performant implementation of Python 2 and 3
+brew "python3" # Interpreted, interactive, object-oriented programming language
 brew "redis" # Persistent key-value database, with built-in net interface
 brew "rename" # Perl-powered file rename script with many helpful built-ins
 brew "ripgrep" # Search tool like grep and The Silver Searcher
@@ -55,6 +56,7 @@ brew "wdiff" # Display word differences between text files
 brew "wget" # Internet file retriever
 brew "yarn" # JavaScript package manager
 brew "zlib" # General-purpose lossless data-compression library
+brew "thefuck" # Programatically correct mistyped console commands
 
 # Fonts - Various fonts, mostly used for coding and UI design
 cask "font-fira-code" # Monospaced font with programming ligatures
