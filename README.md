@@ -3,7 +3,7 @@
 This repository contains two Python scripts for managing software installations and uninstalls using Homebrew based on a Brewfile. The scripts provide a user-friendly interface for installing, updating, or uninstalling software packages.
 
 ## Contents
-- ['bootstrap.sh](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/bootstrap.sh): Basj script that check system for requiremets and then runs the install-bootstrap.py
+- ['bootstrap.sh'](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/bootstrap.sh): Bash script that check system for requiremets and then runs the install-bootstrap.py
 - [`Brewfile`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/Brewfile): A list of software to be installed, including Homebrew taps, development tools, utilities, fonts, and GUI applications, each accompanied by a brief description.
 - [`install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/install-bootstrap.py): 
 	-Lists software that needs to be installed or updated.
