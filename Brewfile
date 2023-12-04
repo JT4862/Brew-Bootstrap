@@ -26,6 +26,7 @@ brew install "git" # Distributed revision control system
 brew install "git-flow-avh" # Extensions to follow Vincent Driessen's branching model
 brew install "github/gh/gh" # GitHub command-line tool
 brew install "go" # The Go programming language
+brew install "grep" # Pattern search using regular expressions
 brew install "helm" # The Kubernetes package manager
 brew install "hub" # Add GitHub support to git on the command-line
 brew install "instrumenta/instrumenta/kubeval" # Tool for validating Kubernetes YAML or JSON configuration files
@@ -43,32 +44,27 @@ brew install "postgresql" # Object-relational database system
 brew install "prettier" # Opinionated code formatter
 brew install "pypy" # Highly performant implementation of Python 2 and 3
 brew install "python3" # Interpreted, interactive, object-oriented programming language
+brew install "rbenv" # Ruby version management tool
 brew install "redis" # Persistent key-value database, with built-in net interface
 brew install "rename" # Perl-powered file rename script with many helpful built-ins
 brew install "ripgrep" # Search tool like grep and The Silver Searcher
 brew install "rsync" # Utility that provides fast incremental file transfer
+brew install "ruby" # Dynamic, open source programming language with a focus on simplicity and productivity
 brew install "ruby-build" # Install various Ruby versions and implementations
-brew install "speedtest-cli" # Command-line interface for testing internet bandwidth using speedtest.net
+brew install "ruby-install" # Install Ruby, JRuby, Rubinius, TruffleRuby, or MRuby
 brew install "ssh-copy-id" # Add a public key to a remote machine's authorized_keys file
 brew install "terraform" # Tool for building, changing, and versioning infrastructure safely and efficiently
+brew install "thefuck" # Programatically correct mistyped console commands
 brew install "vim" # Vi 'workalike' with many additional features
 brew install "wdiff" # Display word differences between text files
 brew install "wget" # Internet file retriever
 brew install "yarn" # JavaScript package manager
 brew install "zlib" # General-purpose lossless data-compression library
-brew install "thefuck" # Programatically correct mistyped console commands
+
 
 # Fonts - Various fonts, mostly used for coding and UI design
-brew install "font-fira-code" # Monospaced font with programming ligatures
-brew install "font-hack" # Typeface designed for source code
-brew install "font-input" # Flexible system of fonts designed specifically for code
-brew install "font-inter" # Typeface carefully crafted for computer screens
-brew install "font-iosevka" # Slender monospace sans-serif and slab-serif typeface
-brew install "font-iosevka-slab" # Slab-serif variant of Iosevka
 brew install "font-jetbrainsmono-nerd-font" # Developer-focused font with ligatures
-brew install "font-monoid" # Customizable, minimal, and legible font for coding
-brew install "font-office-code-pro" # Customized version of Source Code Pro
-brew install "font-victor-mono" # Open-source monospaced font with optional cursive italics
+
 
 # Applications - GUI applications and tools
 brew install --cask "docker" # App to build and share containerized applications and microservices
