@@ -16,12 +16,18 @@ Brew-Bootstrap is a convenient toolset for managing the installation and uninsta
    git clone https://github.com/JT4862/Brew-Bootstrap.git
    cd Brew-Bootstrap
 
-2. Run the install script
+2. Make the script executable
+	```chmod +x ./install-bootstrap.sh```
+
+3. Run the install script
 	```./install-bootstrap.sh ```
 
 ### Uninstallation
 
-1. Run the uninstall script
+1. Make the script executable
+	```chmod +x ./un-install-bootstrap.sh```
+
+2. Run the uninstall script
 	```./un-install-bootstrap.sh```
 
 
