@@ -13,6 +13,7 @@ def is_outdated(package):
 def main():
     brewfile_path = "Brewfile"  # Path to the Brewfile
     to_install = []
+    to_update = []
 
     if not os.path.exists(brewfile_path):
         print(f"Brewfile not found at {brewfile_path}")
@@ -27,26 +28,37 @@ def main():
                 target = ' '.join(parts[2:]).split('#')[0].strip().strip('"')
                 is_cask = command == 'cask'
 
-                if not is_installed(target, is_cask=is_cask) or (is_installed(target, is_cask=is_cask) and is_outdated(target)):
+                if not is_installed(target, is_cask=is_cask):
                     to_install.append((command, target, is_cask))
+                elif is_outdated(target):
+                    to_update.append((command, target, is_cask))
 
     # Summary and user choice
-    print(f"\nThere are {len(to_install)} items to install or update.")
-    choice = input("Do you want to install all at once or individually? (a/i): ").strip().lower()
+    print(f"\nItems to install: {len(to_install)}")
+    for _, target, _ in to_install:
+        print(f"  - {target}")
+
+    print(f"\nItems to update: {len(to_update)}")
+    for _, target, _ in to_update:
+        print(f"  - {target}")
+
+    choice = input("\nDo you want to install/update 1.all at once, 2.individually, or 3.cancel? (1/2/3): ").strip().lower()
 
     # Installation process
-    if choice == 'a':
-        for command, target, is_cask in to_install:
+    if choice == '1':
+        for command, target, is_cask in to_install + to_update:
             subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target])
         print(f"All items have been installed or updated.")
-    elif choice == 'i':
-        for command, target, is_cask in to_install:
+    elif choice == '2':
+        for command, target, is_cask in to_install + to_update:
             user_choice = input(f"Do you want to install/update {target}? (y/n): ").strip().lower()
             if user_choice == 'y':
                 subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target])
                 print(f"{target} has been installed or updated.")
             else:
                 print(f"Skipping {target}")
+    elif choice == '3':
+        print("Installation process canceled.")
 
 if __name__ == "__main__":
     main()

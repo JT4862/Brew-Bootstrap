@@ -8,12 +8,13 @@ def is_installed(package, is_cask=False):
 
 def main():
     brewfile_path = "Brewfile"  # Path to the Brewfile
-    uninstalled_count = 0
+    to_uninstall = []
 
     if not os.path.exists(brewfile_path):
         print(f"Brewfile not found at {brewfile_path}")
         return
 
+    # First pass: Determine what needs to be uninstalled
     with open(brewfile_path, 'r') as file:
         for line in file:
             if line.startswith(('brew install', 'cask install')):
@@ -23,21 +24,30 @@ def main():
                 is_cask = command == 'cask'
 
                 if is_installed(target, is_cask=is_cask):
-                    print(f"Installed: {command} {target}")
-                    choice = input("Do you want to uninstall or skip this item? (u/skip): ").strip().lower()
+                    to_uninstall.append((command, target, is_cask))
 
-                    if choice == 'u':
-                        uninstall_command = ['brew', 'uninstall', '--cask' if is_cask else '--formula', target]
-                        subprocess.run(uninstall_command)
-                        uninstalled_count += 1
-                    elif choice == 'skip':
-                        print(f"Skipping {command} {target}")
-                    else:
-                        print(f"Invalid response. Skipping {command} {target}")
-                else:
-                    print(f"Not installed or not applicable: {command} {target}")
+    # Summary and user choice
+    print(f"\nItems to uninstall: {len(to_uninstall)}")
+    for _, target, _ in to_uninstall:
+        print(f"  - {target}")
 
-    print(f"\nSummary: {uninstalled_count} items were successfully uninstalled.")
+    choice = input("\nDo you want to uninstall 1. all at once, 2. individually, or 3. cancel? (1/2/3): ").strip().lower()
+
+    # Uninstallation process
+    if choice == '1':
+        for command, target, is_cask in to_uninstall:
+            subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target])
+        print(f"All items have been uninstalled.")
+    elif choice == '2':
+        for command, target, is_cask in to_uninstall:
+            user_choice = input(f"Do you want to uninstall {target}? (y/n): ").strip().lower()
+            if user_choice == 'y':
+                subprocess.run(['brew', 'uninstall', '--cask' if is_cask else '--formula', target])
+                print(f"{target} has been uninstalled.")
+            else:
+                print(f"Skipping {target}")
+    elif choice == '3':
+        print("Uninstallation process canceled.")
 
 if __name__ == "__main__":
     main()
