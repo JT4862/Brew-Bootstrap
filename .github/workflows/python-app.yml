@@ -23,8 +23,7 @@ jobs:
         brew install python3
 
     - name: Run script with simulated input
+      run: python3 install-bootstrap.py --option1 ${{ secrets.OPTION1 }} --option2 ${{ secrets.OPTION2 }}
       env:
-        OPTION1: '1'
-      run: python3 install-bootstrap.py --option1 $OPTION1
-
-     
+        OPTION1: 'value1'
+        OPTION2: 'value2'
