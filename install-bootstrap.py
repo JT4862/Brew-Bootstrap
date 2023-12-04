@@ -3,12 +3,28 @@ import subprocess
 
 def is_installed(package, is_cask=False):
     list_command = ['brew', 'list', '--cask'] if is_cask else ['brew', 'list', '--formula']
-    result = subprocess.run(list_command, capture_output=True, text=True)
-    return package in result.stdout
+    try:
+        result = subprocess.run(list_command, capture_output=True, text=True, check=True)
+        return package in result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error while checking if {package} is installed: {e}")
+        return False
 
-def is_outdated(package):
-    result = subprocess.run(['brew', 'outdated', '--formula'], capture_output=True, text=True)
-    return package in result.stdout
+def is_outdated(package, is_cask=False):
+    outdated_command = ['brew', 'outdated', '--cask'] if is_cask else ['brew', 'outdated', '--formula']
+    try:
+        result = subprocess.run(outdated_command, capture_output=True, text=True, check=True)
+        return package in result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error while checking if {package} is outdated: {e}")
+        return False
+
+def extract_target(line):
+    if 'brew install --cask' in line or 'cask install' in line:
+        return line.split('"')[1], True
+    elif 'brew install' in line:
+        return line.split('"')[1], False
+    return None, False
 
 def main():
     brewfile_path = "Brewfile"  # Path to the Brewfile
@@ -19,42 +35,44 @@ def main():
         print(f"Brewfile not found at {brewfile_path}")
         return
 
-    # First pass: Determine what needs to be installed or updated
     with open(brewfile_path, 'r') as file:
         for line in file:
-            if line.startswith(('brew install', 'cask install')):
+            if line.startswith(('brew install', 'brew install --cask')):
                 parts = line.split()
-                command = parts[0]  # brew or cask
-                target = ' '.join(parts[2:]).split('#')[0].strip().strip('"')
-                is_cask = command == 'cask'
+                is_cask = 'cask' in parts or '--cask' in parts
+                target = parts[-1].strip('"').split('#')[0].strip()
 
                 if not is_installed(target, is_cask=is_cask):
-                    to_install.append((command, target, is_cask))
-                elif is_outdated(target):
-                    to_update.append((command, target, is_cask))
+                    to_install.append((target, is_cask))
+                elif is_outdated(target, is_cask=is_cask):
+                    to_update.append((target, is_cask))
 
-    # Summary and user choice
     print(f"\nItems to install: {len(to_install)}")
-    for _, target, _ in to_install:
+    for target, _ in to_install:
         print(f"  - {target}")
 
     print(f"\nItems to update: {len(to_update)}")
-    for _, target, _ in to_update:
+    for target, _ in to_update:
         print(f"  - {target}")
 
     choice = input("\nDo you want to install/update 1.all at once, 2.individually, or 3.cancel? (1/2/3): ").strip().lower()
 
-    # Installation process
     if choice == '1':
-        for command, target, is_cask in to_install + to_update:
-            subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target])
-        print(f"All items have been installed or updated.")
+        for target, is_cask in to_install + to_update:
+            try:
+                subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target], check=True)
+                print(f"{target} has been installed or updated.")
+            except subprocess.CalledProcessError as e:
+                print(f"Error while installing/updating {target}: {e}")
     elif choice == '2':
-        for command, target, is_cask in to_install + to_update:
+        for target, is_cask in to_install + to_update:
             user_choice = input(f"Do you want to install/update {target}? (y/n): ").strip().lower()
             if user_choice == 'y':
-                subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target])
-                print(f"{target} has been installed or updated.")
+                try:
+                    subprocess.run(['brew', 'install', '--cask' if is_cask else '--formula', target], check=True)
+                    print(f"{target} has been installed or updated.")
+                except subprocess.CalledProcessError as e:
+                    print(f"Error while installing/updating {target}: {e}")
             else:
                 print(f"Skipping {target}")
     elif choice == '3':

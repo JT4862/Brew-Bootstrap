@@ -71,21 +71,9 @@ brew install "font-office-code-pro" # Customized version of Source Code Pro
 brew install "font-victor-mono" # Open-source monospaced font with optional cursive italics
 
 # Applications - GUI applications and tools
-brew install "1password-cli" # Command-line interface for 1Password
-brew install "discord" # Voice and text chat software
-brew install "docker" # App to build and share containerized applications and microservices
-brew install "google-cloud-sdk" # Set of tools to manage resources and applications hosted on Google Cloud
-brew install "grammarly" # Writing assistant software
-brew install "hyperdock" # Window management features
-brew install "istat-menus" # Advanced system monitor for macOS
-brew install "iterm2" # Terminal emulator for macOS
-brew install "jetbrains-toolbox" # Manage JetBrains tools and projects
-brew install "mongodb" # NoSQL database program
-brew install "monodraw" # Powerful ASCII art editor designed for the Mac
-brew install "notion" # All-in-one workspace for notes, tasks, wikis, and databases
-brew install "slack" # Team communication and collaboration software
-brew install "spotify" # Digital music service
-brew install "typeface" # Font management app
-brew install "visual-studio-code" # Source-code editor
-brew install "zoomus" # Video communication and virtual meeting platform
+brew install  "docker" # App to build and share containerized applications and microservices
+brew install  "google-cloud-sdk" # Set of tools to manage resources and applications hosted on Google Cloud
+brew install --cask "iterm2" # Terminal emulator for macOS
+brew install  "jetbrains-toolbox" # Manage JetBrains tools and projects
+brew install  "mongodb" # NoSQL database program
 
