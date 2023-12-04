@@ -17,4 +17,4 @@ Brew-Bootstrap is a convenient toolset for managing the installation and uninsta
    cd Brew-Bootstrap
 
 2. Run the install script
-	' ./install-bootstrap.sh '
+	```bash ./install-bootstrap.sh 
