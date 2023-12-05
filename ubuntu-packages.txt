@@ -22,7 +22,6 @@ ruby
 ruby-build
 terraform=1.4.4-*
 thefuck
-vim
 wdiff
 wget
 yarn
