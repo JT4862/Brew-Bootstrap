@@ -18,7 +18,7 @@ def extract_target(line):
     return None, False
 
 def main():
-    brewfile_path = "Brewfile"  # Path to the Brewfile
+    brewfile_path = "brewfile"  # Path to the Brewfile
     to_uninstall = []
 
     if not os.path.exists(brewfile_path):
