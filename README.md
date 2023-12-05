@@ -1,60 +1,36 @@
-# Brewfile Management Scripts
+# Brew-Bootstrap
 
-This repository contains two Python scripts for managing software installations and uninstalls using Homebrew based on a Brewfile. The scripts provide a user-friendly interface for installing, updating, or uninstalling software packages.
+Welcome to Brew-Bootstrap, a comprehensive toolkit for setting up and managing your development environment on macOS and Ubuntu systems using Homebrew and other utilities.
 
-## Contents
-- [`bootstrap.sh`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/bootstrap.sh): Bash script that check system for requiremets and then runs the install-bootstrap.py
-- [`Brewfile`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/Brewfile): A list of software to be installed, including Homebrew taps, development tools, utilities, fonts, and GUI applications, each accompanied by a brief description.
-- [`install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/install-bootstrap.py): 
-	-Lists software that needs to be installed or updated.
-	-Allows installing all software at once, individually, or canceling the process.
-	-Provides a summary of installed and updated items.
-- [`un-install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/brewfile/un-install-bootstrap.sh): 
-	-Lists installed software that can be uninstalled.
-	-Allows uninstalling all software at once, individually, or canceling the process.
-	-Provides a summary of uninstalled items.
+## Overview
 
-## Usage
+Brew-Bootstrap provides a set of scripts and configurations to streamline the setup of a development environment. It includes scripts for installing, updating, and uninstalling packages, as well as scanning and managing Homebrew packages.
 
-### Installation
+## Features
 
-1. Clone the repository:
-   git clone https://github.com/JT4862/Brew-Bootstrap.git
+- **Bootstrap Scripts for macOS and Ubuntu**: Easy-to-use scripts to set up your environment on macOS and Ubuntu.
+- **Homebrew Package Management**: Efficiently manage Homebrew packages, casks, and taps.
+- **Automated Installation and Uninstallation**: Scripts to automate the installation and uninstallation of packages defined in a Brewfile.
+- **Development Tools and Utilities**: Pre-configured list of essential tools and utilities for development.
 
-2. Modify the Brewfile.
-	If you wish you can modify the Brewfile with your favorite hombrew packages
+## Repository Structure
 
-3. Run the Bash script
-	```chmod +x bootstrap.sh``` then run ```./bootstrap.sh```
+- [`mac/bootstrap.sh`](https://github.com/JT4862/Brew-Bootstrap/blob/main/mac/bootstrap.sh): Script to install Homebrew and Python 3 if they are not already installed on macOS.
+- [`mac/brewfile`](https://github.com/JT4862/Brew-Bootstrap/blob/main/mac/brewfile): A Brewfile containing a list of Homebrew packages, casks, and taps for macOS.
+- [`mac/homebrew-scan.py`](https://github.com/JT4862/Brew-Bootstrap/blob/main/mac/homebrew-scan.py): Python script to scan and list installed Homebrew packages, casks, and taps.
+- [`mac/install-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/main/mac/install-bootstrap.py): Script to install or update packages from the Brewfile.
+- [`mac/uninstall-bootstrap.py`](https://github.com/JT4862/Brew-Bootstrap/blob/main/mac/uninstall-bootstrap.py): Script to uninstall packages listed in the Brewfile.
+- [`ubuntu-bootstrap-install.py`](https://github.com/JT4862/Brew-Bootstrap/blob/main/ubuntu-bootstrap-install.py): Script to install packages listed in `ubuntu-packages.txt` for Ubuntu systems.
+- [`ubuntu-packages.txt`](https://github.com/JT4862/Brew-Bootstrap/blob/main/ubuntu-packages.txt): List of packages for installation on Ubuntu systems.
 
-4. Follow the Prompts or update the software
+## Getting Started
 
+To get started with Brew-Bootstrap, clone this repository and run the appropriate script for your operating system. For detailed instructions, refer to the comments within each script.
 
-### Uninstallation
+## Contributions
 
-1. Ensure the Brewfile lists the software you want to uninstall.
-	
+Contributions to Brew-Bootstrap are welcome! Please read our contribution guidelines for more information.
 
-2. Run the uninstall script
-	```python3 uninstall-bootstrap.py```
+## License
 
-3. 	Follow the prompts to uninstall software.
-
-### Tools
-
-- run ```python3 homebrew-scan.py``` to scan your system to see what Homebrew packages, casks and taps are currently on your system
-
-
-## Requirements
- - Python 3.x
- - Homebrew
-
-## Customize the Brewfile
-You can customize the Brewfile to suit your specific software needs. Simply edit the file, following the existing format, to add or remove software.
-
-## Note
- - The scripts assume that the Brewfile is named Brewfile and is located in the same directory as the scripts.
- - Modify the Brewfile path in the scripts if your Brewfile has a different name or location.
-
-## Contributing
-Contributions to Brew-Bootstrap are welcome. Please feel free to submit pull requests or open issues to improve the scripts or add functionality. Please use signed commits
+This project is licensed under the MIT License - see the LICENSE file for details.
