@@ -37,3 +37,7 @@ jobs:
       - name: Install and Update Packages
         run: |
           echo "1" | python install-bootstrap.py
+
+      - name: Brew Upgrade
+        run: |
+          brew upgrade
