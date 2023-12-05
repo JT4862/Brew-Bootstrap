@@ -72,4 +72,4 @@ jobs:
 
       - name: Install and Update Packages
         run: |
-          echo "1" | python ubuntu-bootstrap-install.py
+          python ubuntu-bootstrap-install.py
