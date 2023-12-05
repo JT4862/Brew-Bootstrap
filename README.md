@@ -57,4 +57,4 @@ You can customize the Brewfile to suit your specific software needs. Simply edit
  - Modify the Brewfile path in the scripts if your Brewfile has a different name or location.
 
 ## Contributing
-Contributions to Brew-Bootstrap are welcome. Please feel free to submit pull requests or open issues to improve the scripts or add functionality.
+Contributions to Brew-Bootstrap are welcome. Please feel free to submit pull requests or open issues to improve the scripts or add functionality. Please use signed commits
