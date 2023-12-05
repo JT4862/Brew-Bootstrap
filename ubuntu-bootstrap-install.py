@@ -13,9 +13,5 @@ def main():
     for package in packages:
         install_package(package)
 
-def install_package(package):
-    # Your package installation logic here
-    pass
-
 if __name__ == "__main__":
     main()
