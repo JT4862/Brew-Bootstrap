@@ -27,7 +27,7 @@ def extract_target(line):
     return None, False
 
 def main():
-    brewfile_path = "mac/brewfile"  # Path to the Brewfile
+    brewfile_path = "brewfile"  # Path to the Brewfile
     to_install = []
     to_update = []
 
