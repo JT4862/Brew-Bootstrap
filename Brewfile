@@ -29,21 +29,15 @@ brew install "go" # The Go programming language
 brew install "grep" # Pattern search using regular expressions
 brew install "helm" # The Kubernetes package manager
 brew install "hub" # Add GitHub support to git on the command-line
-brew install "instrumenta/instrumenta/kubeval" # Tool for validating Kubernetes YAML or JSON configuration files
 brew install "jq" # Lightweight and flexible command-line JSON processor
 brew install "jsdoc3" # API documentation generator for JavaScript
 brew install "jsonpp" # JSON pretty printer
-brew install "mongodb/brew/mongocli" # MongoDB command-line tool
-brew install "mongodb/brew/mongodb-community" # MongoDB document databases
-brew install "mongodb/brew/mongodb-database-tools" # MongoDB tools for high-speed data import and export, data backup, and restoration
 brew install "nmap" # Network exploration tool and security / port scanner
 brew install "node" # Platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications
 brew install "nvm" # Manage multiple Node.js versions
 brew install "pkg-config" # Manage compile and link flags for libraries
 brew install "postgresql" # Object-relational database system
 brew install "prettier" # Opinionated code formatter
-brew install "pypy" # Highly performant implementation of Python 2 and 3
-brew install "python3" # Interpreted, interactive, object-oriented programming language
 brew install "rbenv" # Ruby version management tool
 brew install "redis" # Persistent key-value database, with built-in net interface
 brew install "rename" # Perl-powered file rename script with many helpful built-ins
@@ -60,11 +54,6 @@ brew install "wdiff" # Display word differences between text files
 brew install "wget" # Internet file retriever
 brew install "yarn" # JavaScript package manager
 brew install "zlib" # General-purpose lossless data-compression library
-
-
-# Fonts - Various fonts, mostly used for coding and UI design
-brew install "font-jetbrainsmono-nerd-font" # Developer-focused font with ligatures
-
 
 # Applications - GUI applications and tools
 brew install --cask "docker" # App to build and share containerized applications and microservices
