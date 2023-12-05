@@ -14,18 +14,28 @@ def main():
     with open('ubuntu-packages.txt', 'r') as f:
         packages = [line.strip() for line in f]
 
-    successful_installs = 0
-    failed_installs = 0
+    successful_installs = []
+    failed_installs = []
 
     for package in packages:
         if install_package(package):
-            successful_installs += 1
+            successful_installs.append(package)
         else:
-            failed_installs += 1
+            failed_installs.append(package)
 
     print(f"\nInstallation Summary:")
-    print(f"Successful installs: {successful_installs}")
-    print(f"Failed installs: {failed_installs}")
+    print(f"Successful installs: {len(successful_installs)}")
+    print(f"Failed installs: {len(failed_installs)}")
+
+    if successful_installs:
+        print("\nSuccessful Installations:")
+        for package in successful_installs:
+            print(package)
+
+    if failed_installs:
+        print("\nFailed Installations:")
+        for package in failed_installs:
+            print(package)
 
 if __name__ == "__main__":
     main()
