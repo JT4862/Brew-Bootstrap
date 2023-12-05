@@ -25,7 +25,38 @@ Brew-Bootstrap provides a set of scripts and configurations to streamline the se
 
 ## Getting Started
 
-To get started with Brew-Bootstrap, clone this repository and run the appropriate script for your operating system. For detailed instructions, refer to the comments within each script.
+To get started with Brew-Bootstrap, follow these steps:
+
+### For macOS:
+
+ 1. **Clone the Repository**: 
+Clone the repository to your local machine and navigate to the `mac` directory.
+	```bash
+	git clone https://github.com/JT4862/Brew-Bootstrap.git
+	cd Brew-Bootstrap/mac
+	
+
+2. **Run the Bootstrap Script**:
+	Make the bootstrap script executable and run it. This script will install Homebrew and Python 3 if they are not already installed.
+	`chmod +x bootstrap.sh` then `./bootstrap.sh`
+
+3. **Install Packages from Brewfile**:
+	Run  `python3 install-bootstrap.py` script to install or update packages from the Brewfile.
+
+4. **Uninstall Packages (Optional)**:
+	If you need to uninstall packages, run  `python3 uninstall-bootstrap.py` script.
+
+### For Ubuntu:
+
+1. **Clone the Repository**:
+Clone the repository to your local machine.
+
+`git clone https://github.com/JT4862/Brew-Bootstrap.git`
+
+3. **Run the Ubuntu Bootstrap Install Script**:
+Make the Ubuntu bootstrap install script executable and run it. This script will install the packages listed in ubuntu-packages.txt.
+
+`chmod +x ubuntu-bootstrap-install.py` then run `./ubuntu-bootstrap-install.py`
 
 ## Contributions
 
@@ -34,3 +65,4 @@ Contributions to Brew-Bootstrap are welcome! Please read our contribution guidel
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
