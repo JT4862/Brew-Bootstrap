@@ -25,3 +25,4 @@ thefuck
 wdiff
 wget
 yarn
+posh
